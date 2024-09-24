@@ -1,0 +1,38 @@
+#include "decs.h"
+
+int maze(Coordinatetype from, Coordinatetype to);
+
+void cal_all_dist(void)
+{
+	int i, j;
+	int item_id, prev_id;
+
+	for(i = 0; i < n_product; i++){
+		item_id = product_info[i].item_order[0].item_id;
+		product_info[i].item_order[0].dist_from_prev = maze(start_point, item_info[item_id].position);
+		product_info[i].distance = product_info[i].item_order[0].dist_from_prev;
+		prev_id = item_id;
+
+		for(j = 1; j < product_info[i].n_item; j++){
+			item_id = product_info[i].item_order[j].item_id;
+			product_info[i].item_order[j].dist_from_prev = maze(item_info[prev_id].position, item_info[item_id].position);
+			product_info[i].distance += product_info[i].item_order[j].dist_from_prev;
+			prev_id = item_id;
+		}
+
+		product_info[i].item_order[j].dist_from_prev = maze(item_info[prev_id].position, goal_point);
+		product_info[i].distance += product_info[i].item_order[j].dist_from_prev;
+	}
+
+	for(i = 0; i < total_item; i++){
+		item_info[i].dist_from_entrance = maze(delivery_entrance, item_info[i].position);
+		all_replenish += item_info[i].dist_from_entrance;
+		expected_replenish_value += item_info[i].dist_from_entrance * (double)item_info[i].freq/100; 
+	}
+
+	for(i = 0; i < total_item; i++){
+        weight_priority = item_info[i].weight * para[box_level];
+    }
+
+	//return A+B+C;
+}

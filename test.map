@@ -1,0 +1,12 @@
+floor width: 10
+floor height: 10
+
+#blocks: 3
+#boxes of each block: 3
+(1, 1) w 2, h 8
+(4, 1) w 2, h 8
+(7, 1) w 2, h 8
+
+start point: (0, 10)
+goal point: (9, 10)
+delivery entrance: (0, -1)

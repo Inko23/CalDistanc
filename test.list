@@ -1,0 +1,25 @@
+#total items: 5
+item ID, weight, frequency
+0, 100, 40
+1, 90, 10
+2, 80, 20
+3, 120, 100
+4, 10, 60
+
+#products: 2
+product 0:
+production rate: 80%
+#items: 3
+items order:
+1
+0
+3
+
+product 1:
+production rate: 20%
+#items: 4
+items order:
+4
+2
+1
+3
