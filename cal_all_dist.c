@@ -22,6 +22,9 @@ void cal_all_dist(void)
 
 		product_info[i].item_order[j].dist_from_prev = maze(item_info[prev_id].position, goal_point);
 		product_info[i].distance += product_info[i].item_order[j].dist_from_prev;
+
+		all_distance += product_info[i].distance; //総距離
+		expected_value += product_info[i].distance * product_info[i].p_rate; //期待値
 	}
 
 	for(i = 0; i < total_item; i++){
@@ -34,5 +37,5 @@ void cal_all_dist(void)
         weight_priority = item_info[i].weight * para[box_level];
     }
 
-	//return A+B+C;
+	cost = all_distance + 0.1 * expected_replenish_value + 0.2 * weight_priority;
 }

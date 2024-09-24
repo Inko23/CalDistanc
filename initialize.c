@@ -30,8 +30,12 @@ void allocate(void)
 void init_variable(void)
 {
 	time_count = 0;
-	all_replenish = 0;
-	expected_replenish_value = 0.0;
+	all_distance = 0; //総距離
+	expected_value = 0.0; //期待値
+	all_replenish = 0; //補充口からの総距離
+	expected_replenish_value = 0.0; //補充口からの距離の期待値
+	weight_priority = 0.0; //重さによる優先度
+	cost = 0.0; //コスト関数
 }
 
 void init_table(void)

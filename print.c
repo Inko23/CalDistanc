@@ -4,8 +4,6 @@ void print(void)
 {
 	int i, j;
 	double cpu_time;
-	int all_distance = 0; //総距離
-	double expected_value = 0; //期待値
 
 	for(i = 0; i < total_item; i++){
 		printf("%d, %d, %d\t", i, item_info[i].weight, item_info[i].freq);
@@ -60,8 +58,6 @@ void print(void)
 		printf("%d\n", product_info[i].item_order[j].dist_from_prev);
 		printf("\n");
 
-		all_distance += product_info[i].distance;
-		expected_value += product_info[i].distance * product_info[i].p_rate; 
 	}
 
 	for(i = 0;i <total_item; i++){
@@ -73,6 +69,8 @@ void print(void)
 
 	printf("all distance: %d\n", all_distance); //総距離
 	printf("expected value: %lf\n", expected_value); //期待値
+
+	printf("cost: %lf\n", cost); //コスト関数
 
 
 	cpu_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;

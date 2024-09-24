@@ -83,8 +83,14 @@ EXDEF int floor_height;
 EXDEF int n_block;
 EXDEF int n_box;
 EXDEF int time_count;
-EXDEF int all_replenish;
-EXDEF double expected_replenish_value;
+EXDEF int all_distance; //総距離
+EXDEF double expected_value; //期待値
+EXDEF int all_replenish;  //補充口からの総距離
+EXDEF double expected_replenish_value; //補充口からの距離の期待値
+EXDEF int box_level; //何段目に格納するか
+EXDEF int para[2]; //棚の段数によるパラメータ
+EXDEF double weight_priority; //重さによる優先度
+EXDEF double cost; //コスト関数
 
 EXDEF clock_t start_time;
 EXDEF clock_t end_time;
