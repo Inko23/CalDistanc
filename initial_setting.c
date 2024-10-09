@@ -54,15 +54,15 @@ void set_rand_posi(void)
 
 		item_info[i].position = p;
 
-/*
+
 		while(1){
 			l = rand() % n_box;
 
 			if(map[p.x][p.y].box[l] == Empty)
 				break;
 		}
-*/
-l = 0;
+
+//l = 0;
 
 		item_info[i].box_level = l;
 		map[p.x][p.y].n_empty--;
