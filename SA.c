@@ -8,25 +8,46 @@ int ExitCriterion(double T){
     }
 }
 
-//変数を定義する
-void PerturbPlacementViaMove(){ //元の状態を記憶しておく
-    while(1){
-        srand((unsigned)time(NULL));
-        //ランダムに2つのボックスの座標を生成
-        rndm[0] = (int)rand() * (double)(/*x軸のボックスの数*/ / (1 + RAND_MAX));
-        rndm[1] = (int)rand() * (double)(/*y軸のボックスの数*/ / (1 + RAND_MAX));
-        rndm[2] = rand() %  + n_box /*1つの棚に収納されているボックスの数*/;
-        rndm[3] = (int)rand() * (double)(/*x軸のボックスの数*/ / (1 + RAND_MAX));
-        rndm[4] = (int)rand() * (double)(/*y軸のボックスの数*/ / (1 + RAND_MAX));
-        rndm[5] = rand() %  + n_box /*1つの棚に収納されているボックスの数*/;
+Coordinatetype move_candidate(int *level){
+    Coordinatetype p;
+    while (1){
+        p.x = rand() % floor_width;
+        p.y = rand() % floor_height;
+        *level = rand() % n_box ;
+        if(map[p.x][p.y].floor_kind == Shelf) break;
+    }
+    return p;
+}
 
-        if((map[rndm[0]][rndm[1]].box[rndm[2]] != Empty) || (map[rndm[3]][rndm[4]].box[rndm[5]] != Empty)){//どちらかは部品が入っている
+//変数を定義する
+//型を変えてreturnしておく？
+//その方が元に戻しやすいかも
+void PerturbPlacementViaMove(){ //元の状態を記憶しておく
+    Coordinatetype p, q;
+    int level_p, level_q;
+    int OLD_1, OLD_2;
+    while(1){
+        //ランダムに2つのボックスの座標を生成
+        p = move_candidate(&level_p);
+        q = move_candidate(&level_q);
+
+        if((map[p.x][p.y].box[level_p] != Empty) || (map[q.x][q.y].box[level_q] != Empty)){//どちらかは部品が入っている
             //元の状態を保持
-            OLD_1 = map[rndm[0]][rndm[1]].box[rndm[2]]; 
-            OLD_2 = map[rndm[3]][rndm[4]].box[rndm[5]];
+            OLD_1 = map[p.x][p.y].box[level_p]; 
+            OLD_2 = map[q.x][q.y].box[level_q];
             //部品を入れ替える
-            map[rndm[0]][rndm[1]].box[rndm[2]] = OLD_2;
-            map[rndm[3]][rndm[4]].box[rndm[5]] = OLD_1;
+            map[p.x][p.y].box[level_p] = OLD_2;
+            map[q.x][q.y].box[level_q] = OLD_1;
+
+            item_info[OLD_1].position = q;
+            item_info[OLD_2].position = p;
+
+            item_info[OLD_1].box_level = level_q;
+            item_info[OLD_2].box_level = level_p;
+
+            //map[p.x][p.y].n_empty--;
+            //SAの空のボックスの数の入れ替え
+
             break;
         }    
     }    
@@ -40,7 +61,7 @@ void UndoPlacement(){
 
 double random(int s,int t){
     double num = 0.0;
-    num = (double)rand(s, t)/(1 + RAND_MAX);
+    num = (double)(s-t)*rand()/(1 + RAND_MAX) + s;
     return num;
 }
 
