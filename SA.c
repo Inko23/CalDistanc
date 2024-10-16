@@ -1,5 +1,33 @@
 #include "decs.h"
 
+int InitialPlacement(){
+
+}
+
+int InitialTemperature(){
+
+}
+
+int ExitCriterion(){
+
+}
+
+int InnerLoopCriterion(){
+
+}
+
+double PerturbPlacementViaMove(){
+
+}
+
+double Cost(){
+
+}
+
+double UpdateTemp(){
+    
+}
+
 void SA(){
 
     P = InitialPlacement();
