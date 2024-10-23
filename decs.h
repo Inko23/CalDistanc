@@ -87,6 +87,12 @@ typedef struct FloorMap {
 	int *box;
 } MAPtype;
 
+typedef struct Swap {
+	Coordinatetype p;
+	Coordinatetype q;
+	int level_p;
+	int level_q;
+} SWAPtype;
 
 /* variable declarations */
 EXDEF FILE *list_file;
