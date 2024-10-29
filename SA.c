@@ -1,5 +1,7 @@
 #include "decs.h"
 
+double cal_all_dist(void);
+
 int ExitCriterion(double T){
     if(T > FinalTemp){
         return False;
@@ -20,12 +22,10 @@ Coordinatetype move_candidate(int *level){
 }
 
 //変数を定義する
-//型を変えてreturnしておく？
-//その方が元に戻しやすいかも
 SWAPtype PerturbPlacementViaMove(){ //元の状態を記憶しておく
     Coordinatetype p, q;
     int level_p, level_q;
-    int OLD_1, OLD_2;
+    int item_p, item_q;
     SWAPtype rtn_val;
     while(1){
         //ランダムに2つのボックスの座標を生成
@@ -35,17 +35,17 @@ SWAPtype PerturbPlacementViaMove(){ //元の状態を記憶しておく
         if((map[p.x][p.y].box[level_p] != Empty) || (map[q.x][q.y].box[level_q] != Empty)){//どちらかは部品が入っている
             //マップ情報の更新------------------begin-----------------------
             //元の状態を保持
-            OLD_1 = map[p.x][p.y].box[level_p]; 
-            OLD_2 = map[q.x][q.y].box[level_q];
+            item_p = map[p.x][p.y].box[level_p]; 
+            item_q = map[q.x][q.y].box[level_q];
             //部品を入れ替える
-            map[p.x][p.y].box[level_p] = OLD_2;
-            map[q.x][q.y].box[level_q] = OLD_1;
+            map[p.x][p.y].box[level_p] = item_q;
+            map[q.x][q.y].box[level_q] = item_p;
 
             //SAの空のボックスの数の入れ替え
-            if(OLD_1 == Empty && OLD_2 !=Empty){ //pの元の状態が空&&qが空でないなら
+            if(item_p == Empty && item_q !=Empty){ //pの元の状態が空&&qが空でないなら
                 map[p.x][p.y].n_empty--;
                 map[q.x][q.y].n_empty++;
-            }else if(OLD_2 == Empty && OLD_1 !=Empty){ //qの元の状態が空&&pが空でないなら
+            }else if(item_q == Empty && item_p !=Empty){ //qの元の状態が空&&pが空でないなら
                 map[q.x][q.y].n_empty--;
                 map[p.x][p.y].n_empty++;
             }
@@ -53,13 +53,13 @@ SWAPtype PerturbPlacementViaMove(){ //元の状態を記憶しておく
 
             
             //部品情報の更新------------------begin-----------------------
-            if(OLD_1 != Empty){
-                item_info[OLD_1].position = q;
-                item_info[OLD_1].box_level = level_q;
+            if(item_p != Empty){
+                item_info[item_p].position = q;
+                item_info[item_p].box_level = level_q;
             }
-            if(OLD_2 != Empty){
-                item_info[OLD_2].position = p;
-                item_info[OLD_2].box_level = level_p;
+            if(item_q != Empty){
+                item_info[item_q].position = p;
+                item_info[item_q].box_level = level_p;
             }
             //部品情報の更新--------------------end---------------------
 
@@ -108,9 +108,9 @@ void UndoPlacement(SWAPtype rev_val){
 
 }
 
-double random(int s,int t){
+double myrandom(int s,int t){
     double num = 0.0;
-    num = (double)(s-t)*rand()/(1 + RAND_MAX) + s;
+    num = (double)(s-t)*rand()/(1.0 + (double)RAND_MAX) + s;
     return num;
 }
 
@@ -122,6 +122,7 @@ double UpdateTemp(double Temp){
 void SA(){
     int i;
     double T;
+    double r = 0;
     SWAPtype swap_info;
     T = InitialTemperature;
     
@@ -130,9 +131,9 @@ void SA(){
         for(i=0; i<InnerLoopCount; i++){ /*One templerature*/
             swap_info = PerturbPlacementViaMove();
             new_cost = cal_all_dist();
-            diff_Cost = new_cost - old_cost;
-            r = random(0,1);
-            if(r < pow(exp(1.0), -diff_Cost/T)){
+            diff_cost = new_cost - old_cost;
+            r = myrandom(0,1);
+            if(r < pow(exp(1.0), -diff_cost/T)){
                 old_cost = new_cost; /*Accept move*/
             }else{
                 UndoPlacement(swap_info);

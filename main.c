@@ -7,9 +7,10 @@ void read_list(FILE *fp);
 void read_map(FILE *fp);
 void initial_setting(void);
 void initialize(void);
-void cal_all_dist(void);
+void SA(void);
 void print(void);
 void close_files(void);
+
 
 int main(int argc, char *argv[])
 {
@@ -21,7 +22,7 @@ int main(int argc, char *argv[])
 	initialize();
 
 	start_time = clock();
-	cal_all_dist();
+	SA();
 	end_time = clock();
 
 	print();
