@@ -125,6 +125,13 @@ void SA(){
     double r = 0;
     SWAPtype swap_info;
     T = InitialTemperature;
+    FILE *fp;
+    char *fname = "data.csv";
+
+    fp = fopen(fname, "w");
+    if( fp == NULL ){
+        printf("%sファイルが開けません\n", fname);
+    }
     
     while(ExitCriterion(T) == False){
         old_cost = cal_all_dist();
@@ -140,5 +147,10 @@ void SA(){
             }
         } /*End one temperature*/
         T = UpdateTemp(T);
+        count++;
+        printf("%d\n", count);
+        fprintf(fp, "%d,%lf\n", count, old_cost);
     }
+    fclose(fp);
+    printf( "%sファイル書き込みが終わりました\n", fname );
 }

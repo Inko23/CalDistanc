@@ -116,6 +116,7 @@ EXDEF double cost; //コスト関数
 EXDEF double new_cost;
 EXDEF double old_cost; 
 EXDEF double diff_cost;
+EXDEF double count; //試行回数
 
 EXDEF clock_t start_time;
 EXDEF clock_t end_time;

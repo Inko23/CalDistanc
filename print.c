@@ -75,4 +75,10 @@ void print(void)
 
 	cpu_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 	fprintf(stdout,"time: %lf sec\n",cpu_time);
+
+	//
+	
+	for(i=0;i<total_item;i++){
+		printf("%d:[%d][%d]", item_id, map[][]);
+	}
 }
