@@ -2,7 +2,7 @@
 
 int maze(Coordinatetype from, Coordinatetype to);
 
-void cal_all_dist(void)
+double cal_all_dist(void)
 {
 	int i, j;
 	int item_id, prev_id;
@@ -34,8 +34,10 @@ void cal_all_dist(void)
 	}
 
 	for(i = 0; i < total_item; i++){
-        weight_priority = item_info[i].weight * para[box_level];
+        weight_priority = item_info[i].weight * para[item_info[i].box_level];
     }
 
-	cost = all_distance + 0.1 * expected_replenish_value + 0.2 * weight_priority;
+	cost = all_distance + CostParamR * expected_replenish_value + CostParamW * weight_priority;
+
+	return cost;
 }

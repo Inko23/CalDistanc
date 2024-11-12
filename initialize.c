@@ -36,6 +36,9 @@ void init_variable(void)
 	expected_replenish_value = 0.0; //補充口からの距離の期待値
 	weight_priority = 0.0; //重さによる優先度
 	cost = 0.0; //コスト関数
+	para[0] = Upper;
+	para[1] = Middle;
+	para[2] = Lower;
 }
 
 void init_table(void)

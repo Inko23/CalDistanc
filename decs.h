@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 #ifdef	MAIN
 #define	EXDEF
@@ -36,6 +37,21 @@
 
 #define Unavailable	0
 #define Available	1
+
+#define True 1
+#define False 0
+
+#define CoolingRate 0.9 //or 0.95, 0.99
+#define InitialTemperature 1.0
+#define FinalTemp 0.1
+#define InnerLoopCount 10000
+
+#define CostParamR 0.1
+#define CostParamW 0.2
+
+#define Upper 1
+#define Middle 1
+#define Lower 1
 
 typedef struct Coordinate {
 	int x;
@@ -87,8 +103,8 @@ EXDEF int all_distance; //総距離
 EXDEF double expected_value; //期待値
 EXDEF int all_replenish;  //補充口からの総距離
 EXDEF double expected_replenish_value; //補充口からの距離の期待値
-EXDEF int box_level; //何段目に格納するか
-EXDEF int para[2]; //棚の段数によるパラメータ
+//EXDEF int box_level; //何段目に格納するか
+EXDEF int para[3]; //棚の段数によるパラメータ
 EXDEF double weight_priority; //重さによる優先度
 EXDEF double cost; //コスト関数
 
