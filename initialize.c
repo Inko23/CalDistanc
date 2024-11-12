@@ -39,6 +39,7 @@ void init_variable(void)
 	para[0] = Upper;
 	para[1] = Middle;
 	para[2] = Lower;
+	count = 0;
 }
 
 void init_table(void)

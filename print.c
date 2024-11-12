@@ -5,6 +5,15 @@ void print(void)
 	int i, j;
 	double cpu_time;
 
+	//配置表示--------------------begin---------------------
+	for(int i=0; i<total_item; i++){
+		printf("%d:[%d][%d][%d]\n", i, item_info[i].position.x, item_info[i].position.y, item_info[i].box_level);
+	}
+
+	printf("-----------------------------\n");
+	//配置表示--------------------end-----------------------
+
+
 	for(i = 0; i < total_item; i++){
 		printf("%d, %d, %d\t", i, item_info[i].weight, item_info[i].freq);
 		printf("used product: ");
@@ -72,7 +81,7 @@ void print(void)
 
 	printf("cost: %lf\n", cost); //コスト関数
 
-
 	cpu_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 	fprintf(stdout,"time: %lf sec\n",cpu_time);
+
 }

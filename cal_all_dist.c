@@ -7,6 +7,12 @@ double cal_all_dist(void)
 	int i, j;
 	int item_id, prev_id;
 
+	all_replenish = 0.0;
+	expected_replenish_value = 0.0;
+	all_distance = 0.0;
+	expected_value = 0.0;
+	cost = 0.0;
+
 	for(i = 0; i < n_product; i++){
 		item_id = product_info[i].item_order[0].item_id;
 		product_info[i].item_order[0].dist_from_prev = maze(start_point, item_info[item_id].position);

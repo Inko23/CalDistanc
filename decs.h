@@ -87,6 +87,12 @@ typedef struct FloorMap {
 	int *box;
 } MAPtype;
 
+typedef struct Swap {
+	Coordinatetype p;
+	Coordinatetype q;
+	int level_p;
+	int level_q;
+} SWAPtype;
 
 /* variable declarations */
 EXDEF FILE *list_file;
@@ -107,6 +113,10 @@ EXDEF double expected_replenish_value; //補充口からの距離の期待値
 EXDEF int para[3]; //棚の段数によるパラメータ
 EXDEF double weight_priority; //重さによる優先度
 EXDEF double cost; //コスト関数
+EXDEF double new_cost;
+EXDEF double old_cost; 
+EXDEF double diff_cost;
+EXDEF double count; //試行回数
 
 EXDEF clock_t start_time;
 EXDEF clock_t end_time;
