@@ -46,8 +46,8 @@
 #define FinalTemp 0.1
 #define InnerLoopCount 10000
 
-#define CostParamR 0.1
-#define CostParamW 0.2
+#define CostParamR 0.0
+#define CostParamW 0.0
 
 #define Upper 1
 #define Middle 1
