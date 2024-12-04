@@ -110,7 +110,7 @@ void UndoPlacement(SWAPtype rev_val){
 
 double myrandom(int s,int t){
     double num = 0.0;
-    num = (double)(s-t)*rand()/(1.0 + (double)RAND_MAX) + s;
+    num = (double)(t-s)*rand()/(1.0 + (double)RAND_MAX) + s;
     return num;
 }
 
@@ -135,6 +135,8 @@ void SA(){
     
     while(ExitCriterion(T) == False){
         old_cost = cal_all_dist();
+        accept_count = 0;
+        inner_count = 0;
         for(i=0; i<InnerLoopCount; i++){ /*One templerature*/
             swap_info = PerturbPlacementViaMove();
             new_cost = cal_all_dist();
@@ -142,14 +144,16 @@ void SA(){
             r = myrandom(0,1);
             if(r < pow(exp(1.0), -diff_cost/T)){
                 old_cost = new_cost; /*Accept move*/
+                accept_count++;
             }else{
                 UndoPlacement(swap_info);
+                //not_accept++;
             }
         } /*End one temperature*/
         T = UpdateTemp(T);
         count++;
         //printf("%d\n", count);
-        fprintf(fp, "%d,%lf\n", count, old_cost);
+        fprintf(fp, "%d,%lf\n", count, (double)accept_count/InnerLoopCount);
     }
     fclose(fp);
     printf( "%sファイル書き込みが終わりました\n", fname );

@@ -41,10 +41,10 @@
 #define True 1
 #define False 0
 
-#define CoolingRate 0.9 //or 0.95, 0.99
-#define InitialTemperature 1.0
-#define FinalTemp 0.1
-#define InnerLoopCount 10000
+#define CoolingRate 0.99 //or 0.95, 0.99
+#define InitialTemperature 2.0
+#define FinalTemp 0.11
+#define InnerLoopCount 100000
 
 #define CostParamR 0.0
 #define CostParamW 0.0
@@ -116,7 +116,10 @@ EXDEF double cost; //コスト関数
 EXDEF double new_cost;
 EXDEF double old_cost; 
 EXDEF double diff_cost;
-EXDEF double count; //試行回数
+EXDEF int count; //試行回数
+EXDEF int accept_count; //受理回数
+EXDEF int not_accept; //却下回数
+EXDEF int inner_count; //温度変更回数
 
 EXDEF clock_t start_time;
 EXDEF clock_t end_time;

@@ -37,7 +37,15 @@ int main(int argc, char *argv[])
 	print();
 	close_files();
 
-	printf("コストの差 : %lf", prev_cost - final_cost);
+	printf("コストの差 : %lf\n", prev_cost - final_cost);
+	
+	printf("受理回数: %d\n", accept_count); //受理回数
+
+	printf("却下回数: %d\n", not_accept); //却下回数
+
+	printf("試行回数: %d\n", count); //試行回数
+
+	printf("内部試行回数: %d\n", inner_count); //試行回数
 
 	return 0;
 }

@@ -40,6 +40,9 @@ void init_variable(void)
 	para[1] = Middle;
 	para[2] = Lower;
 	count = 0;
+	accept_count = 0;
+	not_accept = 0;
+	inner_count = 0;
 }
 
 void init_table(void)
