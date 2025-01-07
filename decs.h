@@ -41,7 +41,7 @@
 #define True 1
 #define False 0
 
-#define CoolingRate 0.99 //or 0.95, 0.99
+#define CoolingRate 0.95 //or 0.95, 0.99
 #define InitialTemperature 2.0
 #define FinalTemp 0.11
 #define InnerLoopCount 100000
