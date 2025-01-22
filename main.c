@@ -1,6 +1,5 @@
 #define MAIN
 
-
 #include "decs.h"
 
 void check_arguments(int argc, char *argv[]);
