@@ -40,7 +40,7 @@ double cal_all_dist(void)
 	}
 
 	for(i = 0; i < total_item; i++){
-        weight_priority = item_info[i].weight * para[item_info[i].box_level];
+        weight_priority += (item_info[i].weight * para[item_info[i].box_level]);
     }
 
 	cost = all_distance + CostParamR * expected_replenish_value + CostParamW * weight_priority;

@@ -150,10 +150,10 @@ void SA(){
                 //not_accept++;
             }
         } /*End one temperature*/
+        fprintf(fp, "%lf,%lf\n", T, (double)accept_count/InnerLoopCount);
         T = UpdateTemp(T);
         count++;
         //printf("%d\n", count);
-        fprintf(fp, "%d,%lf\n", count, (double)accept_count/InnerLoopCount);
     }
     fclose(fp);
     printf( "%sファイル書き込みが終わりました\n", fname );
