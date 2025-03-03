@@ -127,10 +127,16 @@ void SA(){
     T = InitialTemperature;
     FILE *fp;
     char *fname = "data.csv";
+    FILE *fp1;
+    char *fname1 = "data3.csv";
 
     fp = fopen(fname, "w");
     if( fp == NULL ){
         printf("%sファイルが開けません\n", fname);
+    }
+    fp1 = fopen(fname1, "w");
+    if( fp1 == NULL ){
+        printf("%sファイルが開けません\n", fname1);
     }
     
     while(ExitCriterion(T) == False){
@@ -145,16 +151,20 @@ void SA(){
             if(r < pow(exp(1.0), -diff_cost/T)){
                 old_cost = new_cost; /*Accept move*/
                 accept_count++;
+                
             }else{
                 UndoPlacement(swap_info);
                 //not_accept++;
             }
         } /*End one temperature*/
         fprintf(fp, "%lf,%lf\n", T, (double)accept_count/InnerLoopCount);
+        fprintf(fp1, "%lf, %lf\n", T, new_cost);
         T = UpdateTemp(T);
         count++;
         //printf("%d\n", count);
     }
     fclose(fp);
+    fclose(fp1);
     printf( "%sファイル書き込みが終わりました\n", fname );
+    printf( "%sファイル書き込みが終わりました\n", fname1 );
 }

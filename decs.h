@@ -47,11 +47,11 @@
 #define InnerLoopCount 100000
 
 #define CostParamR 0.0
-#define CostParamW 1.0
+#define CostParamW 0.0
 
 #define Upper 1
 #define Middle 1
-#define Lower 10
+#define Lower 3
 
 typedef struct Coordinate {
 	int x;

@@ -20,20 +20,20 @@ void print(void)
 	//配置表示--------------------end-----------------------
 */
 
-	printf("CostParamR : %lf\n", CostParamR);
+	/*printf("CostParamR : %lf\n", CostParamR);
 	printf("CostParamW : %lf\n", CostParamW);
 	printf("Upper : %d\n", Upper);
 	printf("Middle : %d\n", Middle);
-	printf("Lower : %d\n", Lower);
+	printf("Lower : %d\n", Lower);*/
 
 	for(int i=0; i<total_item; i++){
 		if(item_info[i].box_level==0) c0++;
 		else if(item_info[i].box_level==1) c1++;
 		else if(item_info[i].box_level==2) c2++;
 	}
-	printf("0:%d個\n", c0);
-	printf("1:%d個\n", c1);
-	printf("2:%d個\n", c2);
+	//printf("0:%d個\n", c0);
+	//printf("1:%d個\n", c1);
+	//printf("2:%d個\n", c2);
 
 
 	/*for(i = 0; i < total_item; i++){
@@ -54,6 +54,7 @@ void print(void)
 	}
 	printf("\n");*/
 
+	/*
 	printf("start: (%d, %d)\n", start_point.x, start_point.y);
 	printf("goal: (%d, %d)\n", goal_point.x, goal_point.y);
 	printf("entrance: (%d, %d)\n", delivery_entrance.x, delivery_entrance.y);
@@ -93,7 +94,7 @@ void print(void)
 		}
 		printf("\n");
 	}
-	printf("\n");
+	printf("\n");*/
 
 	/*for(j = 0; j < n_box; j++){
 		printf("|");
@@ -131,6 +132,9 @@ void print(void)
 		printf("replenish[%d]: %d",i , item_info[i].dist_from_entrance); //補充口からの距離
 		printf("\n");
 	}*/
+
+
+
 	printf("all replenish: %d\n", all_replenish); //補充口からの距離
 	printf("replenish expected value: %lf\n", expected_replenish_value); //期待値
 

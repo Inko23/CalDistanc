@@ -11,6 +11,7 @@ double cal_all_dist(void)
 	expected_replenish_value = 0.0;
 	all_distance = 0.0;
 	expected_value = 0.0;
+	weight_priority = 0.0;
 	cost = 0.0;
 
 	for(i = 0; i < n_product; i++){
